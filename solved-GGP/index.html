@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            padding: 48px 32px;
+            margin: 24px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 15px;
+            color: #86868b;
+            margin-bottom: 36px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #86868b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 17px;
+            font-family: inherit;
+            border: 1.5px solid #d2d2d7;
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: #fafafa;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0071e3;
+            box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.12);
+            background: #fff;
+        }
+
+        .result-box {
+            margin-top: 24px;
+            min-height: 56px;
+            padding: 14px 16px;
+            background: #f5f5f7;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+        }
+
+        .result-box.empty {
+            opacity: 0.6;
+        }
+
+        .result-text {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            word-break: break-all;
+            text-align: center;
+            color: #1d1d1f;
+        }
+
+        .result-placeholder {
+            font-size: 15px;
+            color: #afafb2;
+        }
+
+        .btn-wrapper {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            height: 48px;
+        }
+
+        button {
+            padding: 0 32px;
+            height: 44px;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: inherit;
+            color: #fff;
+            background: #0071e3;
+            border: none;
+            border-radius: 22px;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.15s, background 0.2s;
+            opacity: 0;
+            transform: translateY(8px) scale(0.96);
+            pointer-events: none;
+        }
+
+        button.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        button:hover {
+            background: #0077ed;
+        }
+
+        button:focus-visible {
+            outline: 3px solid rgba(0, 113, 227, 0.35);
+            outline-offset: 2px;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 36px 20px;
+                margin: 16px;
+                border-radius: 16px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            input[type="text"] {
+                font-size: 16px;
+            }
+
+            .result-text {
+                font-size: 18px;
+            }
+        }
+    </style>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <h1>Reverse String</h1>
+        <p class="subtitle">Escribe un texto y mira cómo se invierte en tiempo real</p>
+
+        <label for="inputText">Texto original</label>
+        <input type="text" id="inputText" placeholder="Escribe aquí..." autocomplete="off" autofocus>
+
+        <div class="result-box empty" id="resultBox" aria-live="polite">
+            <span class="result-placeholder" id="placeholder">El texto invertido aparecerá aquí</span>
+            <span class="result-text" id="reversedText" hidden></span>
+        </div>
+
+        <div class="btn-wrapper">
+            <button id="copyBtn" type="button" aria-label="Copiar texto invertido al portapapeles">Copiar
+                resultado</button>
+        </div>
+    </main>
+</body>
+
+</html>
