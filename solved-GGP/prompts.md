@@ -2,7 +2,7 @@
 # Prompt para resolver Ejercicio Reverse String
 
 Prompt generado en ChatGPT.
-Codigo gernaro en Claude.
+Código generado en Claude.
 
 Actúa como un Ingeniero de Software Senior especializado en desarrollo frontend, JavaScript vanilla, diseño responsive, accesibilidad básica y creación de interfaces limpias y robustas.
 

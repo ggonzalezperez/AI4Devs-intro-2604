@@ -11,6 +11,8 @@
 
     const MIN_CHARS_FOR_BUTTON = 3;
     const COPY_FEEDBACK_MS = 1500;
+    const COPY_DEFAULT_LABEL = copyBtn.textContent;
+    let copyFeedbackTimeoutId = null;
 
     function reverseString(str) {
         return Array.from(str).reverse().join("");
@@ -34,7 +36,7 @@
 
         const showButton = value.length > MIN_CHARS_FOR_BUTTON;
         copyBtn.classList.toggle("visible", showButton);
-        copyBtn.setAttribute("aria-hidden", String(!showButton));
+        copyBtn.disabled = !showButton;
     }
 
     async function copyToClipboard() {
@@ -43,10 +45,13 @@
 
         try {
             await navigator.clipboard.writeText(text);
-            const original = copyBtn.textContent;
             copyBtn.textContent = "¡Copiado!";
-            setTimeout(() => {
-                copyBtn.textContent = original;
+            if (copyFeedbackTimeoutId) {
+                clearTimeout(copyFeedbackTimeoutId);
+            }
+            copyFeedbackTimeoutId = setTimeout(() => {
+                copyBtn.textContent = COPY_DEFAULT_LABEL;
+                copyFeedbackTimeoutId = null;
             }, COPY_FEEDBACK_MS);
         } catch {
             // Si la API del portapapeles falla (permisos, http, etc.)
